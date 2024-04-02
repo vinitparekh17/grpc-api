@@ -1,0 +1,51 @@
+syntax = "proto3";
+
+option go_package = "github.com/vinitparekh17/golang-service/protobufs/todo";
+
+package todoapp;
+
+service TodoList {
+    rpc AddTodo (AddTodoRequest) returns (AddTodoResponse) {}
+    rpc GetTodos (GetTodosRequest) returns (GetTodosResponse) {}
+    rpc UpdateTodo (UpdateTodoRequest) returns (UpdateTodoResponse) {}
+    rpc DeleteTodo (DeleteTodoRequest) returns (DeleteTodoResponse) {}
+}
+
+message AddTodoRequest {
+    string title = 1;
+    string description = 2;
+}
+
+message AddTodoResponse {
+    int32 id = 1;
+}
+
+message GetTodosRequest {}
+
+message GetTodosResponse {
+    repeated Todo todos = 1;
+}
+
+message Todo {
+    int32 id = 1;
+    string title = 2;
+    string description = 3;
+}
+
+message UpdateTodoRequest {
+    int32 id = 1;
+    string title = 2;
+    string description = 3;
+}
+
+message UpdateTodoResponse {
+    bool success = 1;
+}
+
+message DeleteTodoRequest {
+    int32 id = 1;
+}
+
+message DeleteTodoResponse {
+    bool success = 1;
+}
